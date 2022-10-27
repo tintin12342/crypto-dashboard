@@ -5,10 +5,18 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { CryptoListComponent } from './crypto-list/crypto-list.component';
+import { SelectedChartComponent } from './selected-chart/selected-chart.component';
+import { CryptoConverterComponent } from './crypto-converter/crypto-converter.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CryptoListComponent,
+    SelectedChartComponent,
+    CryptoConverterComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
