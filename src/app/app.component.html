@@ -8,18 +8,32 @@
 </head>
 <body>
   <mat-drawer-container id="drawerContainer">
+
     <mat-drawer mode="side" opened id="sidebar">
       <app-sidebar></app-sidebar>
     </mat-drawer>
+
     <mat-drawer-content>
+      <mat-toolbar>
+        <div>
+          <span>Welcome back!</span>
+          <span id="currentTab">Dashboard</span>
+        </div>
+        <div>
+          <span>icon</span>
+        </div>
+      </mat-toolbar>
+
       <div>
         <app-selected-chart></app-selected-chart>
         <app-crypto-list></app-crypto-list>
       </div>
+
       <div>
         <app-crypto-converter></app-crypto-converter>
       </div>
     </mat-drawer-content>
+
   </mat-drawer-container>
 </body>
 </html>

@@ -8,3 +8,19 @@
     border: none;
     box-shadow: 0px 0 5px 2px var(--shadow);
 }
+
+mat-toolbar {
+    justify-content: space-between;
+    background-color: transparent;
+    padding: 0 2em;
+    margin: 1em 0;
+}
+
+mat-toolbar :first-child {
+    display: flex;
+    flex-direction: column;
+}
+
+#currentTab {
+    font-size: 0.7em;
+}
