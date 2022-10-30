@@ -1,0 +1,21 @@
+#parentContainer {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.iconPadding {
+    padding: 1em 0;
+}
+
+#parentContainer :first-child {
+    position: absolute;
+    top: 3em;
+}
+
+#parentContainer :last-child {
+    position: absolute;
+    bottom: 3em;
+}
