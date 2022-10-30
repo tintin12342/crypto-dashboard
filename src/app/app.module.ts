@@ -11,6 +11,8 @@ import { CryptoListComponent } from './crypto-list/crypto-list.component';
 import { SelectedChartComponent } from './selected-chart/selected-chart.component';
 import { CryptoConverterComponent } from './crypto-converter/crypto-converter.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { CoinGeckoService } from './controller/coingecko.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,9 +26,10 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     BrowserModule,
     BrowserAnimationsModule,
     MatSidenavModule,
-    MatToolbarModule
+    MatToolbarModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [CoinGeckoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

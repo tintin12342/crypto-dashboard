@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CoinGeckoService } from '../controller/coingecko.service';
 
 @Component({
   selector: 'app-crypto-list',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CryptoListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private coinGeckoService: CoinGeckoService) { 
+    this.coinGeckoService.getCoinListData().subscribe((response) => {
+      
+    })
+  }
 
   ngOnInit(): void {
   }
