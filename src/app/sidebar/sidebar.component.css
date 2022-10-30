@@ -7,15 +7,15 @@
 }
 
 .iconPadding {
-    padding: 1em 0;
+    padding: 1rem 0;
 }
 
 #parentContainer :first-child {
     position: absolute;
-    top: 3em;
+    top: 3rem;
 }
 
 #parentContainer :last-child {
     position: absolute;
-    bottom: 3em;
+    bottom: 3rem;
 }

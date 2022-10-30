@@ -24,13 +24,14 @@
         </div>
       </mat-toolbar>
 
-      <div>
-        <app-selected-chart></app-selected-chart>
-        <app-crypto-list></app-crypto-list>
-      </div>
-
-      <div>
-        <app-crypto-converter></app-crypto-converter>
+      <div id="layoutContainer">
+        <div id="leftLayout">
+          <app-selected-chart class="leftLayoutChildren"></app-selected-chart>
+          <app-crypto-list class="leftLayoutChildren"></app-crypto-list>
+        </div>
+        <div id="rightLayout">
+          <app-crypto-converter class="rightLayoutChild"></app-crypto-converter>
+        </div>
       </div>
     </mat-drawer-content>
 

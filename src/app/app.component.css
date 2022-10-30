@@ -10,10 +10,11 @@
 }
 
 mat-toolbar {
+    height: 7vh;
     justify-content: space-between;
+    margin: 1.2rem 0;
+    padding: 0 3rem;
     background-color: transparent;
-    padding: 0 2em;
-    margin: 1em 0;
 }
 
 mat-toolbar :first-child {
@@ -22,5 +23,31 @@ mat-toolbar :first-child {
 }
 
 #currentTab {
-    font-size: 0.7em;
+    font-size: 0.9rem;
+}
+
+#layoutContainer {
+    height: 85vh;
+    display: flex;
+    padding: 0 3rem;
+}
+
+#leftLayout {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.leftLayoutChildren {
+    height: 50%;
+}
+
+#rightLayout {
+    width: 30%;
+    display: flex;
+}
+
+.rightLayoutChild {
+    width: 100%;
 }
