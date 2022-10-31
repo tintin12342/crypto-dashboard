@@ -9,6 +9,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
+import { NgxTippyModule } from 'ngx-tippy-wrapper';
+
 import { CryptoListComponent } from './crypto-list/crypto-list.component';
 import { SelectedChartComponent } from './selected-chart/selected-chart.component';
 import { CryptoConverterComponent } from './crypto-converter/crypto-converter.component';
@@ -32,6 +34,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     MatListModule,
     MatProgressBarModule,
+    NgxTippyModule,
   ],
   providers: [CoinGeckoService],
   bootstrap: [AppComponent]

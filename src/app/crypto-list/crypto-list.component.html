@@ -46,12 +46,33 @@
                     <span [ngClass]="coin.price_change_percentage_7d_in_currency < 0 ? 'low textStyle' : 'high textStyle'">{{ coin.price_change_percentage_7d_in_currency }}%</span>
                 </div>
                 <span class="columnWidth">${{ coin.market_cap }}</span>
-                <div id="supply" class="columnWidth supplyColumn">
-                    <span>{{ coin.circulating_supply }} {{ coin.symbol }}</span>
-                    <mat-progress-bar *ngIf="coin.progress !== 100" mode="determinate" value="{{ coin.progress }}"></mat-progress-bar>
+                <div id="my-tooltip-template" style="display: none">
+                    <h1>Sauce</h1>
+                </div>
+                <div id="supply" class="columnWidth supplyColumn">               
+                    <div #toolTipTemplate>
+                        <div class="tippyContent" *ngIf="coin.progress < 100">
+                            <span>Percentage</span>
+                            <span>{{ coin.progress }}%</span>
+                        </div>
+                        <mat-progress-bar style="margin: 0.8rem 0;" *ngIf="coin.progress !== 100" mode="determinate" value="{{ coin.progress }}"></mat-progress-bar>
+                        <div class="tippyContent">
+                            <span>Circulating Supply</span>
+                            <span>{{ coin.circulating_supply }} {{ coin.symbol }}</span>
+                        </div>
+                        <div class="tippyContent">
+                            <span>Max Supply</span>
+                            <span>{{ coin.total_supply }} {{ coin.symbol }}</span>
+                        </div>
+                    </div>
+                    <div 
+                         [ngxTippy]="toolTipTemplate"
+                         [tippyProps]="{ theme: 'light', placement: 'bottom',  delay: [200, null] }">
+                        <span>{{ coin.circulating_supply }} {{ coin.symbol }}</span>
+                        <mat-progress-bar *ngIf="coin.progress !== 100" mode="determinate" value="{{ coin.progress }}"></mat-progress-bar>
+                    </div>
                 </div>
             </mat-list-item>
         </mat-list>
     </div>
-    
 </div>

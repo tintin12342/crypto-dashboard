@@ -58,6 +58,7 @@ mat-list {
     width: 80%;
     height: 5px;
     margin: 0 auto;
+    margin-top: 0.3rem;
     border-radius: 1rem;
 }
 
@@ -103,17 +104,26 @@ mat-list {
     background-color: var(--green-light);
 }
 
-
 ::-webkit-scrollbar {
     width: 4px;
     overflow-y: scroll;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--gray-light);
+    background: var(--purple-light);
     border-radius: 10px;
 }
 
 #supply :hover {
     cursor: pointer;
+}
+
+.tippyContent {
+    display: flex;
+    justify-content: space-between;
+}
+
+::ng-deep .tippy-box {
+    width: 25rem;
+    padding: 0.5rem;
 }
