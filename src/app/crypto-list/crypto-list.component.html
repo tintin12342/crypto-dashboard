@@ -31,7 +31,7 @@
             <mat-list-item *ngFor="let coin of listDataSource; let i = index;">
                 <span class="rankColumnWidth">{{ i + 1 }}</span>
                 <div class="nameColumnWidth">
-                    <img src="{{ coin.image }}" height="23px" style="margin-right: 0.5rem;"> 
+                    <img src="{{ coin.image }}" height="23px" style="margin-right: 0.5rem;" loading="lazy"> 
                     <span> {{ coin.name }}</span>
                     <span id="cryptoSymbol"> {{ coin.symbol }}</span>
                 </div>
