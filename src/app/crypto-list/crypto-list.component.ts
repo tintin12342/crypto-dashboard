@@ -8,20 +8,25 @@ import { CoinListData } from '../model/CoinListData';
   styleUrls: ['./crypto-list.component.css']
 })
 export class CryptoListComponent implements OnInit {
-  displayedColumns: string[] = ['rank', 'name', 'price', '1h', '24h', '7d', 'marketCap'];
+  progressBar: number = 0;
   listDataSource: CoinListData[] = [];
 
   constructor(private coinGeckoService: CoinGeckoService) { 
     this.coinGeckoService.getCoinListData().subscribe((coinListData: CoinListData[]) => {
       this.listDataSource = coinListData.map((data: CoinListData) => {
+        data.progress = Math.floor((Math.floor(Number(data.circulating_supply)) / Math.floor(Number(data.total_supply))) * 100);
+        if (data.progress === Infinity) data.progress = 100;
+
         data.price_change_percentage_1h_in_currency = Math.round(data.price_change_percentage_1h_in_currency * 100 + Number.EPSILON ) / 100;
         data.price_change_percentage_24h_in_currency = Math.round(data.price_change_percentage_24h_in_currency * 100 + Number.EPSILON ) / 100;
         data.price_change_percentage_7d_in_currency = Math.round(data.price_change_percentage_7d_in_currency * 100 + Number.EPSILON ) / 100;
+       
         data.market_cap = this.numberWithCommas(data.market_cap);
-        
+
+        data.circulating_supply = Math.floor(Number(data.circulating_supply));
+        data.circulating_supply = this.numberWithCommas(data.circulating_supply);
         return data
       });
-      console.log(coinListData)
     })
   }
 

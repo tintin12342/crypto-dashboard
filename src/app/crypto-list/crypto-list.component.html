@@ -18,10 +18,13 @@
                 <span class="titleItem textStyle">24h</span>
             </div>
             <div class="columnWidth">
-                <span class="titleItem textStyle">7d</span>
+                <span class="titleItem textStyle" style="margin-left: -0.8rem; margin-right: 0.8rem;">7d</span>
             </div>
             <div class="columnWidth">
                 <span class="titleItem textStyle" style="width: 5rem;">Market Cap</span> 
+            </div>
+            <div class="columnWidth">
+                <span class="titleItem textStyle" style="width: 7rem; margin-left: 1.5rem;">Circulating Supply</span> 
             </div>
         </div>
         <mat-list>
@@ -43,6 +46,10 @@
                     <span [ngClass]="coin.price_change_percentage_7d_in_currency < 0 ? 'low textStyle' : 'high textStyle'">{{ coin.price_change_percentage_7d_in_currency }}%</span>
                 </div>
                 <span class="columnWidth">${{ coin.market_cap }}</span>
+                <div id="supply" class="columnWidth supplyColumn">
+                    <span>{{ coin.circulating_supply }} {{ coin.symbol }}</span>
+                    <mat-progress-bar *ngIf="coin.progress !== 100" mode="determinate" value="{{ coin.progress }}"></mat-progress-bar>
+                </div>
             </mat-list-item>
         </mat-list>
     </div>
