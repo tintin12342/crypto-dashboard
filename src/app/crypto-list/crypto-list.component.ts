@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CoinGeckoService } from '../controller/coingecko.service';
 import { CoinListData } from '../model/CoinListData';
 import { NgxTippyService } from 'ngx-tippy-wrapper';
@@ -8,7 +8,7 @@ import { NgxTippyService } from 'ngx-tippy-wrapper';
   templateUrl: './crypto-list.component.html',
   styleUrls: ['./crypto-list.component.css']
 })
-export class CryptoListComponent implements OnInit, AfterViewInit {
+export class CryptoListComponent implements OnInit {
   listDataSource: CoinListData[] = [];
 
   constructor(private coinGeckoService: CoinGeckoService, private tippyService: NgxTippyService) { 
@@ -18,9 +18,6 @@ export class CryptoListComponent implements OnInit, AfterViewInit {
         return data
       });
     });
-  }
-  ngAfterViewInit(): void {
-    
   }
 
   ngOnInit(): void {

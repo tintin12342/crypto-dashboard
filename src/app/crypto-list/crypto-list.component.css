@@ -114,7 +114,7 @@ mat-list {
     border-radius: 10px;
 }
 
-#supply :hover {
+.onHoverCursor :hover {
     cursor: pointer;
 }
 
