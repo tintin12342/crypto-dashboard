@@ -1,10 +1,14 @@
 #listContainer {
-    background-color: white;
+    background-color: var(--white);
     border-radius: 1rem;
 }
 
+#title {
+    font-weight: bold;
+}
+
 mat-list {
-    height: 30vh;
+    height: 32vh;
     width: 95%;
     margin: 0 auto;
     padding-top: 0;
@@ -13,8 +17,9 @@ mat-list {
 
 .mat-list-item {
     font-size: 0.9rem;
-    font-weight: bold;
-    border-bottom: solid 1px var(--body-background);
+    font-weight: 500;
+    border-bottom: solid 1px var(--purple-light);
+    color: var(--black);
 }
 
 #titleRow {
@@ -23,13 +28,12 @@ mat-list {
     display: flex;
     align-items: center;
     margin: 0 auto;
-    font-weight: 500;
     font-size: 0.8rem;
 }
 
 .titleItem {
-    color: #6d6d6d;
-    background: #f2f2f2;
+    color: var(--purple);
+    background: var(--purple-light);
     padding: 0.3rem;
     border-radius: 1rem;
     font-weight: 500;
@@ -48,8 +52,8 @@ mat-list {
 #cryptoSymbol {
     margin-left: 0.5rem;
     font-weight: normal;
-    color: #6d6d6d;
-    background: #f2f2f2;
+    color: var(--gray);
+    background: var(--gray-light);
     border-radius: 1rem;
     width: 2.5rem;
     text-align: center;
@@ -57,7 +61,7 @@ mat-list {
 }
 
 .rankColumnWidth {
-    width: 5%;
+    width: 7%;
 }
 
 ::-webkit-scrollbar {
@@ -66,14 +70,25 @@ mat-list {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #cccccc;
+    background: var(--gray-light);
     border-radius: 10px;
 }
 
+.textStyle {
+    width: 3.5rem;
+    display: block;
+    text-align: center;
+    font-weight: 500;
+    border-radius: 1rem;
+    padding: 0.3rem;
+}
+
 .low {
-    color: #eb0000;
+    color: var(--red);
+    background-color: var(--red-light);
 }
 
 .high {
-    color: #239e23;
+    color: var(--green);
+    background-color: var(--green-light);
 }

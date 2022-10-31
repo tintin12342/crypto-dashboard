@@ -1,6 +1,6 @@
 #drawerContainer {
     height: 100vh;
-    background-color: var(--body-background);
+    background-color: var(--purple-light);
 }
 
 #sidebar {

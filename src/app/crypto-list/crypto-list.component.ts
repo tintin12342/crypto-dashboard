@@ -21,6 +21,7 @@ export class CryptoListComponent implements OnInit {
         
         return data
       });
+      console.log(coinListData)
     })
   }
 

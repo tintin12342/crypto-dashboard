@@ -1,27 +1,27 @@
 <div>
-    <h3>Top 100 Coins</h3>
+    <h3 id="title">Top 100 Coins</h3>
     <div id="listContainer">
         <div id="titleRow">
-            <div class="rankColumnWidth">
-                <span class="titleItem">Rank</span>
+            <div class="rankColumnWidth" style="margin-left: -1rem; margin-right: 0.5rem;">
+                <span class="titleItem textStyle">Rank</span>
             </div>
-            <div class="nameColumnWidth">
-                <span class="titleItem">Name</span>
-            </div>
-            <div class="columnWidth">
-                <span class="titleItem">Price</span>
+            <div class="nameColumnWidth" style="margin-left: 0.5rem; margin-right: -0.5rem;">
+                <span class="titleItem textStyle">Name</span>
             </div>
             <div class="columnWidth">
-                <span class="titleItem">1h</span>
+                <span class="titleItem textStyle">Price</span>
             </div>
             <div class="columnWidth">
-                <span class="titleItem">24h</span>
+                <span class="titleItem textStyle">1h</span>
             </div>
             <div class="columnWidth">
-                <span class="titleItem">7d</span>
+                <span class="titleItem textStyle">24h</span>
             </div>
             <div class="columnWidth">
-                <span class="titleItem">Market Cap</span> 
+                <span class="titleItem textStyle">7d</span>
+            </div>
+            <div class="columnWidth">
+                <span class="titleItem textStyle" style="width: 5rem;">Market Cap</span> 
             </div>
         </div>
         <mat-list>
@@ -33,9 +33,15 @@
                     <span id="cryptoSymbol"> {{ coin.symbol }}</span>
                 </div>
                 <span class="columnWidth">${{ coin.current_price }}</span>
-                <span class="columnWidth" [ngClass]="coin.price_change_percentage_1h_in_currency < 0 ? 'low' : 'high'">{{ coin.price_change_percentage_1h_in_currency }}%</span>
-                <span class="columnWidth" [ngClass]="coin.price_change_percentage_24h_in_currency < 0 ? 'low' : 'high'">{{ coin.price_change_percentage_24h_in_currency }}%</span>
-                <span class="columnWidth" [ngClass]="coin.price_change_percentage_7d_in_currency < 0 ? 'low' : 'high'">{{ coin.price_change_percentage_7d_in_currency }}%</span>
+                <div class="columnWidth">
+                    <span [ngClass]="coin.price_change_percentage_1h_in_currency < 0 ? 'low textStyle' : 'high textStyle'">{{ coin.price_change_percentage_1h_in_currency }}%</span>
+                </div>
+                <div class="columnWidth">
+                    <span [ngClass]="coin.price_change_percentage_24h_in_currency < 0 ? 'low textStyle' : 'high textStyle'">{{ coin.price_change_percentage_24h_in_currency }}%</span>
+                </div>
+                <div class="columnWidth">
+                    <span [ngClass]="coin.price_change_percentage_7d_in_currency < 0 ? 'low textStyle' : 'high textStyle'">{{ coin.price_change_percentage_7d_in_currency }}%</span>
+                </div>
                 <span class="columnWidth">${{ coin.market_cap }}</span>
             </mat-list-item>
         </mat-list>

@@ -1,6 +1,14 @@
 :root {
-    --body-background: #EAF0FA;
-    --shadow: rgb(0 0 0 / 10%);
+    --white: #FEFEFE;
+    --black: #222222;
+    --purple: #574CCB;
+    --purple-light: #574CCB12;
+    --green: #16C784;
+    --green-light: #16C78429;
+    --red: #EA3943;
+    --red-light: #EA394329;
+    --gray: #6D6D6D;
+    --gray-light: #F2F2F2;
 }
 
 html, body { height: 100%; }
