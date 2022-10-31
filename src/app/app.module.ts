@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list'
 
 import { CryptoListComponent } from './crypto-list/crypto-list.component';
 import { SelectedChartComponent } from './selected-chart/selected-chart.component';
@@ -27,7 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     MatSidenavModule,
     MatToolbarModule,
-    HttpClientModule
+    HttpClientModule,
+    MatListModule,
   ],
   providers: [CoinGeckoService],
   bootstrap: [AppComponent]

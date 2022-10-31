@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
+import { CoinListData } from "../model/CoinListData";
 
 
 @Injectable()
@@ -9,14 +10,13 @@ export class CoinGeckoService {
     constructor(private http: HttpClient) {}
     
     getCoinListData() {
-        return this.http.get(`${this.url}/coins/markets`, {
+        return this.http.get<CoinListData[]>(`${this.url}/coins/markets`, {
             params: {
                 'vs_currency': 'usd',
                 'order': 'gecko_desc',
                 'per_page': '100',
                 'page': '1',
-                'sparkline': 'false',
-                'price_change_percentage': '1h%2C24h%2C7d'
+                'price_change_percentage': '1h,24h,7d'
             }
         })
     }

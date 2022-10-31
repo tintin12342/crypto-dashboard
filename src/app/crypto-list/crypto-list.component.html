@@ -1,1 +1,44 @@
-<p>crypto-list works!</p>
+<div>
+    <h3>Top 100 Coins</h3>
+    <div id="listContainer">
+        <div id="titleRow">
+            <div class="rankColumnWidth">
+                <span class="titleItem">Rank</span>
+            </div>
+            <div class="nameColumnWidth">
+                <span class="titleItem">Name</span>
+            </div>
+            <div class="columnWidth">
+                <span class="titleItem">Price</span>
+            </div>
+            <div class="columnWidth">
+                <span class="titleItem">1h</span>
+            </div>
+            <div class="columnWidth">
+                <span class="titleItem">24h</span>
+            </div>
+            <div class="columnWidth">
+                <span class="titleItem">7d</span>
+            </div>
+            <div class="columnWidth">
+                <span class="titleItem">Market Cap</span> 
+            </div>
+        </div>
+        <mat-list>
+            <mat-list-item *ngFor="let coin of listDataSource; let i = index;">
+                <span class="rankColumnWidth">{{ i + 1 }}</span>
+                <div class="nameColumnWidth">
+                    <img src="{{ coin.image }}" height="23px" style="margin-right: 0.5rem;"> 
+                    <span> {{ coin.name }}</span>
+                    <span id="cryptoSymbol"> {{ coin.symbol }}</span>
+                </div>
+                <span class="columnWidth">${{ coin.current_price }}</span>
+                <span class="columnWidth" [ngClass]="coin.price_change_percentage_1h_in_currency < 0 ? 'low' : 'high'">{{ coin.price_change_percentage_1h_in_currency }}%</span>
+                <span class="columnWidth" [ngClass]="coin.price_change_percentage_24h_in_currency < 0 ? 'low' : 'high'">{{ coin.price_change_percentage_24h_in_currency }}%</span>
+                <span class="columnWidth" [ngClass]="coin.price_change_percentage_7d_in_currency < 0 ? 'low' : 'high'">{{ coin.price_change_percentage_7d_in_currency }}%</span>
+                <span class="columnWidth">${{ coin.market_cap }}</span>
+            </mat-list-item>
+        </mat-list>
+    </div>
+    
+</div>

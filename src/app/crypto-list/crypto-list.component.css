@@ -1,0 +1,79 @@
+#listContainer {
+    background-color: white;
+    border-radius: 1rem;
+}
+
+mat-list {
+    height: 30vh;
+    width: 95%;
+    margin: 0 auto;
+    padding-top: 0;
+    overflow-y: auto;
+}
+
+.mat-list-item {
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-bottom: solid 1px var(--body-background);
+}
+
+#titleRow {
+    height: 3rem;
+    width: 94%;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+
+.titleItem {
+    color: #6d6d6d;
+    background: #f2f2f2;
+    padding: 0.3rem;
+    border-radius: 1rem;
+    font-weight: 500;
+}
+
+.columnWidth {
+    width: 10%;
+}
+
+.nameColumnWidth { 
+    width: 35%;
+    display: flex;
+    align-items: center;
+}
+
+#cryptoSymbol {
+    margin-left: 0.5rem;
+    font-weight: normal;
+    color: #6d6d6d;
+    background: #f2f2f2;
+    border-radius: 1rem;
+    width: 2.5rem;
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+.rankColumnWidth {
+    width: 5%;
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cccccc;
+    border-radius: 10px;
+}
+
+.low {
+    color: #eb0000;
+}
+
+.high {
+    color: #239e23;
+}
