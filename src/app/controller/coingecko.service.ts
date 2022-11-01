@@ -28,7 +28,7 @@ export class CoinGeckoService {
         this.http.get<OHLC[]>(`${this.url}/coins/${id}/ohlc`, {
             params: {
                 'vs_currency': 'usd',
-                'days': '1'
+                'days': '7'
             }
         }).subscribe((ohlc: OHLC[]) => {
             this.ohlcData.next(ohlc);

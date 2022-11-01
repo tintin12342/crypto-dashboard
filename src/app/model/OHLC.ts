@@ -1,5 +1,5 @@
 export interface OHLC {
-    time: number,
+    time: number | Date | string,
     open: number,
     high: number,
     low: number,
