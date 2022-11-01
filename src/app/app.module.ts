@@ -11,6 +11,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { NgxTippyModule } from 'ngx-tippy-wrapper';
 
+import { NgxEchartsModule } from 'ngx-echarts';
+
 import { CryptoListComponent } from './crypto-list/crypto-list.component';
 import { SelectedChartComponent } from './selected-chart/selected-chart.component';
 import { CryptoConverterComponent } from './crypto-converter/crypto-converter.component';
@@ -35,6 +37,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatListModule,
     MatProgressBarModule,
     NgxTippyModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts'),
+    })
   ],
   providers: [CoinGeckoService],
   bootstrap: [AppComponent]

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CoinGeckoService } from '../controller/coingecko.service';
 import { CoinListData } from '../model/CoinListData';
-import { NgxTippyService } from 'ngx-tippy-wrapper';
+import { OHLC } from '../model/OHLC';
 
 @Component({
   selector: 'app-crypto-list',
@@ -11,7 +11,7 @@ import { NgxTippyService } from 'ngx-tippy-wrapper';
 export class CryptoListComponent implements OnInit {
   listDataSource: CoinListData[] = [];
 
-  constructor(private coinGeckoService: CoinGeckoService, private tippyService: NgxTippyService) { 
+  constructor(private coinGeckoService: CoinGeckoService) { 
     this.coinGeckoService.getCoinListData().subscribe((coinListData: CoinListData[]) => {
       this.listDataSource = coinListData.map((data: CoinListData) => {
         this.formatListData(data);
@@ -42,5 +42,9 @@ export class CryptoListComponent implements OnInit {
 
   numberWithCommas(x: number | string) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  onItemClick(coin: CoinListData) {
+    this.coinGeckoService.setOHLCData(coin.id);
   }
 }

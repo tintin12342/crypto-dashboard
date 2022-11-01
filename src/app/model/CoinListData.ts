@@ -1,4 +1,5 @@
 export interface CoinListData {
+    id: string,
     image: string,
     name: string,
     symbol: string,
