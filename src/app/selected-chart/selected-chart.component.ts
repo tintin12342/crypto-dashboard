@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EChartsOption } from 'echarts';
 import { CoinGeckoService } from '../controller/coingecko.service';
-import { ChartData } from '../model/ChartData';
 import * as echarts from 'echarts';
 
 @Component({
@@ -13,13 +12,25 @@ export class SelectedChartComponent implements OnInit {
   chartTitle = '';
   chartOption: EChartsOption = {};
 
+  firstValue: number = -1;
+  lastValue: number = -1;
+
+  allPrices: number[] = []
+
   constructor(private coinGeckoService: CoinGeckoService) { 
     this.coinGeckoService.getChartTitle().subscribe((coinName: string) => {
       this.chartTitle = coinName;
     })
 
-    this.coinGeckoService.getChartData().subscribe((chartData: ChartData) => {
+    this.coinGeckoService.getChartData().subscribe((chartData: any) => {
       if (chartData.prices === null) return;
+      this.firstValue = chartData.prices[0][1];
+      this.lastValue = chartData.prices[chartData.prices.length - 1][1];
+
+      chartData.prices.forEach((element: number[]) => {
+        element[1] >= 10 ? element[1] = Math.round(element[1] * 100) / 100 : element[1] = Math.round(element[1] * 1000000) / 1000000
+        this.allPrices.push(element[1])
+      });
 
       this.chartOption = {
         color: '#16C784',
@@ -33,6 +44,8 @@ export class SelectedChartComponent implements OnInit {
           type: 'time',
         },
         yAxis: {
+          max: Math.round((Math.max.apply(Math, this.allPrices) * 1.05) * 100) / 100,
+          min: Math.round((Math.min.apply(Math, this.allPrices) * 0.95) * 100) / 100
         },
         dataZoom: [
           {
@@ -62,13 +75,13 @@ export class SelectedChartComponent implements OnInit {
             type: 'line',
             showSymbol: false,
             lineStyle: {
-              color: '#16C784'
+              color: this.firstValue > this.lastValue ? '#EA3943' : '#16C784'
             },
             areaStyle: {
               color: new echarts.graphic.LinearGradient(0, 0, 0, 1.2, [
                 {
                   offset: 0,
-                  color: '#16C784'
+                  color: this.firstValue > this.lastValue ? '#EA3943' : '#16C784'
                 },
                 {
                   offset: 1,
@@ -83,6 +96,8 @@ export class SelectedChartComponent implements OnInit {
           }
         ]
       }
+
+      this.allPrices = [];
     })
   }
 
