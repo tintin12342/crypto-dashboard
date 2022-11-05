@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CoinGeckoService } from '../controller/coingecko.service';
 import { CoinListData } from '../model/CoinListData';
-import { OHLC } from '../model/OHLC';
 
 @Component({
   selector: 'app-crypto-list',
@@ -45,6 +44,6 @@ export class CryptoListComponent implements OnInit {
   }
 
   onItemClick(coin: CoinListData) {
-    this.coinGeckoService.setOHLCData(coin.id);
+    this.coinGeckoService.setChartData(coin.id);
   }
 }

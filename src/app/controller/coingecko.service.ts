@@ -3,12 +3,18 @@ import { HttpClient } from '@angular/common/http';
 import { CoinListData } from "../model/CoinListData";
 import { OHLC } from "../model/OHLC";
 import { Observable, BehaviorSubject } from "rxjs";
+import { ChartData } from "../model/ChartData";
 
 
 @Injectable()
 export class CoinGeckoService {
     private url: string = 'https://api.coingecko.com/api/v3';
     private ohlcData = new BehaviorSubject<OHLC[]>([]);
+    private chartData = new BehaviorSubject<ChartData>({
+        prices: null,
+        market_caps: null,
+        total_volumes: null
+    });
 
     constructor(private http: HttpClient) {}
     
@@ -22,6 +28,22 @@ export class CoinGeckoService {
                 'price_change_percentage': '1h,24h,7d'
             }
         })
+    }
+
+    setChartData(id: string): void {
+        this.http.get<ChartData>(`${this.url}/coins/${id}/market_chart`, {
+            params: {
+                'vs_currency': 'usd',
+                'days': 'max',
+                'interval': 'daily'
+            }
+        }).subscribe((chartData: ChartData) => {
+            this.chartData.next(chartData);
+        })
+    }
+
+    getChartData(): Observable<ChartData> {
+        return this.chartData.asObservable()
     }
 
     setOHLCData(id: string): void {
