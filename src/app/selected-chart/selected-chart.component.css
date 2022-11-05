@@ -1,0 +1,22 @@
+#title {
+    position: absolute;
+    z-index: 2;
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+}
+
+.chartContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--white);
+    border-radius: 1rem;
+}
+
+#selectionMsg {
+    position: absolute;
+}
+
+.chart {
+    width: 100%;
+}

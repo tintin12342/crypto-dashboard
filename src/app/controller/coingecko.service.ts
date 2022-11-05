@@ -10,6 +10,7 @@ import { ChartData } from "../model/ChartData";
 export class CoinGeckoService {
     private url: string = 'https://api.coingecko.com/api/v3';
     private ohlcData = new BehaviorSubject<OHLC[]>([]);
+    private titleObervable = new BehaviorSubject<string>('');
     private chartData = new BehaviorSubject<ChartData>({
         prices: null,
         market_caps: null,
@@ -28,6 +29,14 @@ export class CoinGeckoService {
                 'price_change_percentage': '1h,24h,7d'
             }
         })
+    }
+
+    setChartTitle(title: string): void {
+        this.titleObervable.next(title);
+    }
+
+    getChartTitle(): Observable<string> {
+        return this.titleObervable.asObservable()
     }
 
     setChartData(id: string): void {

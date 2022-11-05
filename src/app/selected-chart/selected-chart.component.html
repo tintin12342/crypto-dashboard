@@ -1,1 +1,5 @@
-<div echarts [options]="chartOption"></div>
+<h2 id="title">{{ chartTitle }}</h2>
+<div class="chartContainer">
+    <span id="selectionMsg">Select chart from the list</span>
+    <div class="chartContainer chart" echarts [options]="chartOption"></div>
+</div>
