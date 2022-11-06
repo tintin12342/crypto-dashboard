@@ -33,7 +33,7 @@ export class SelectedChartComponent implements OnInit {
       });
 
       this.chartOption = {
-        color: '#16C784',
+        color: this.firstValue > this.lastValue ? '#EA3943' : '#16C784',
         tooltip: {
           trigger: 'axis',
           axisPointer: {
@@ -44,8 +44,15 @@ export class SelectedChartComponent implements OnInit {
           type: 'time',
         },
         yAxis: {
-          max: Math.round((Math.max.apply(Math, this.allPrices) * 1.05) * 100) / 100,
-          min: Math.round((Math.min.apply(Math, this.allPrices) * 0.95) * 100) / 100
+          max: Math.ceil(Math.max.apply(Math, this.allPrices) * 100000) / 100000,
+          min: Math.floor(Math.min.apply(Math, this.allPrices) * 100000) / 100000,
+        },
+        grid: {
+          top: '15%',
+          left: '3%',
+          right: '3%',
+          bottom: '15%',
+          containLabel: true
         },
         dataZoom: [
           {
@@ -78,7 +85,7 @@ export class SelectedChartComponent implements OnInit {
               color: this.firstValue > this.lastValue ? '#EA3943' : '#16C784'
             },
             areaStyle: {
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1.2, [
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
                 {
                   offset: 0,
                   color: this.firstValue > this.lastValue ? '#EA3943' : '#16C784'

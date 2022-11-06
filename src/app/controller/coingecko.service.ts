@@ -39,12 +39,12 @@ export class CoinGeckoService {
         return this.titleObervable.asObservable()
     }
 
-    setChartData(id: string): void {
+    setChartData(id: string, days: string, interval: string): void {
         this.http.get<ChartData>(`${this.url}/coins/${id}/market_chart`, {
             params: {
                 'vs_currency': 'usd',
-                'days': 'max',
-                'interval': 'daily'
+                'days': days,
+                'interval': interval
             }
         }).subscribe((chartData: ChartData) => {
             this.chartData.next(chartData);

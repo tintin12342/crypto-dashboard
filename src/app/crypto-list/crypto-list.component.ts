@@ -44,7 +44,7 @@ export class CryptoListComponent implements OnInit {
   }
 
   onItemClick(coin: CoinListData) {
-    this.coinGeckoService.setChartData(coin.id);
+    this.coinGeckoService.setChartData(coin.id, '1d', '');
     this.coinGeckoService.setChartTitle(coin.name);
   }
 }
