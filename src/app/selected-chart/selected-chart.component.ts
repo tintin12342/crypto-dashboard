@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { EChartsOption } from 'echarts';
 import { CoinGeckoService } from '../controller/coingecko.service';
 import * as echarts from 'echarts';
+import Big from 'big.js';
+import { ChartData } from '../model/ChartData';
 
 @Component({
   selector: 'app-selected-chart',
@@ -14,6 +16,9 @@ export class SelectedChartComponent implements OnInit {
 
   firstValue: number = -1;
   lastValue: number = -1;
+  
+  maxPrice: Big = new Big(-1);
+  minPrice: Big = new Big(-1);
 
   allPrices: number[] = []
 
@@ -28,101 +33,96 @@ export class SelectedChartComponent implements OnInit {
       this.lastValue = chartData.prices[chartData.prices.length - 1][1];
 
       chartData.prices.forEach((element: number[]) => {
-        element[1] >= 10 ? element[1] = Math.round(element[1] * 100) / 100 : element[1] = Math.round(element[1] * 1000000) / 1000000
+        let price = new Big(element[1])
+        element[1] >= 10 ? element[1] = Number(price.toFixed(2)) : element[1] = Number(price.toFixed(6))
         this.allPrices.push(element[1])
+
+        this.maxPrice = new Big(Math.max.apply(Math, this.allPrices)).round(4, Big.roundUp)
+        this.minPrice = new Big(Math.min.apply(Math, this.allPrices)).round(4, Big.roundDown)
       });
 
-      this.chartOption = {
-        color: this.firstValue > this.lastValue ? '#EA3943' : '#16C784',
-        tooltip: {
-          trigger: 'axis',
-          axisPointer: {
-            type: 'cross'
-          }
-        },
-        xAxis: {
-          type: 'time',
-        },
-        yAxis: {
-          max: Math.ceil(Math.max.apply(Math, this.allPrices) * 100000) / 100000,
-          min: Math.floor(Math.min.apply(Math, this.allPrices) * 100000) / 100000,
-        },
-        grid: {
-          top: '15%',
-          left: '3%',
-          right: '3%',
-          bottom: '15%',
-          containLabel: true
-        },
-        dataZoom: [
-          {
-            fillerColor: '#574CCB12',
-            dataBackground: {
-              areaStyle: {
-                color: '#574CCB'
-              },
-              lineStyle: {
-                color: '#574CCB'
-              }
-            }
-          },
-          {
-            type: 'inside',
-            start: 0,
-            end: 100
-          },
-          {
-            start: 0,
-            end: 100
-          }
-        ],
-        series: [
-          {
-            name: 'Price',
-            type: 'line',
-            showSymbol: false,
-            lineStyle: {
-              color: this.firstValue > this.lastValue ? '#EA3943' : '#16C784'
-            },
-            areaStyle: {
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                {
-                  offset: 0,
-                  color: this.firstValue > this.lastValue ? '#EA3943' : '#16C784'
-                },
-                {
-                  offset: 1,
-                  color: '#ffffff12'
-                }
-              ])
-            },
-            data: chartData.prices.map((data: any) => {
-              data[1] >= 10 ? data[1] = Math.round(data[1] * 100) / 100 : data[1] = Math.round(data[1] * 1000000) / 1000000
-              return data
-            })
-          }
-        ]
-      }
+      this.setChartOptions(chartData)
 
       this.allPrices = [];
     })
   }
 
-  splitData(rawData: any) {
-    const categoryData = [];
-    const values = [];
-    for (var i = 0; i < rawData.length; i++) {
-      categoryData.push(rawData[i].splice(0, 1)[0]);
-      values.push(rawData[i]);
-    }
-    return {
-      categoryData: categoryData,
-      values: values
-    };
-  }
-  
-
   ngOnInit(): void {
+  }
+
+  setChartOptions(chartData: any) {
+    this.chartOption = {
+      color: this.firstValue > this.lastValue ? '#EA3943' : '#16C784',
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'cross'
+        }
+      },
+      xAxis: {
+        type: 'time',
+      },
+      yAxis: {
+        max: Number(this.maxPrice),
+        min: Number(this.minPrice)
+      },
+      grid: {
+        top: '15%',
+        left: '3%',
+        right: '3%',
+        bottom: '15%',
+        containLabel: true
+      },
+      dataZoom: [
+        {
+          fillerColor: '#574CCB12',
+          dataBackground: {
+            areaStyle: {
+              color: '#574CCB'
+            },
+            lineStyle: {
+              color: '#574CCB'
+            }
+          }
+        },
+        {
+          type: 'inside',
+          start: 0,
+          end: 100
+        },
+        {
+          start: 0,
+          end: 100
+        }
+      ],
+      series: [
+        {
+          name: 'Price',
+          type: 'line',
+          showSymbol: false,
+          lineStyle: {
+            color: this.firstValue > this.lastValue ? '#EA3943' : '#16C784'
+          },
+          areaStyle: {
+            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+              {
+                offset: 0,
+                color: this.firstValue > this.lastValue ? '#EA3943' : '#16C784'
+              },
+              {
+                offset: 1,
+                color: '#ffffff12'
+              }
+            ])
+          },
+          data: chartData.prices.map((data: any) => {
+            let price = new Big(data[1])
+            data[1] >= 10 ? data[1] = Number(price.toFixed(2)) : data[1] = Number(price.toFixed(6))
+            return data
+          })
+        }
+      ]
+    }
   }
 
 }
