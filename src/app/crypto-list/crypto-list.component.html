@@ -10,7 +10,7 @@
             </div>
             <div class="columnWidth">
                 <span class="titleItem textStyle">Price</span>
-            </div>
+            </div> 
             <div class="columnWidth">
                 <span class="titleItem textStyle">1h</span>
             </div>
@@ -30,12 +30,12 @@
         <mat-list>
             <mat-list-item *ngFor="let coin of listDataSource; let i = index;">
                 <span class="rankColumnWidth">{{ i + 1 }}</span>
-                <div (click)="onItemClick(coin)" class="nameColumnWidth">
+                <div (click)="onItemClick(coin)" class="nameColumnWidth onHoverCursor">
                     <img src="{{ coin.image }}" height="23px" style="margin-right: 0.5rem;" loading="lazy"> 
                     <span> {{ coin.name }}</span>
                     <span id="cryptoSymbol"> {{ coin.symbol }}</span>
                 </div>
-                <span (click)="onItemClick(coin)" class="columnWidth">${{ coin.current_price }}</span>
+                <span (click)="onItemClick(coin)" class="columnWidth onHoverCursor">${{ coin.current_price }}</span>
                 <div class="columnWidth">
                     <span [ngClass]="coin.price_change_percentage_1h_in_currency < 0 ? 'low textStyle' : 'high textStyle'">{{ coin.price_change_percentage_1h_in_currency }}%</span>
                 </div>
@@ -45,7 +45,7 @@
                 <div class="columnWidth">
                     <span [ngClass]="coin.price_change_percentage_7d_in_currency < 0 ? 'low textStyle' : 'high textStyle'">{{ coin.price_change_percentage_7d_in_currency }}%</span>
                 </div>
-                <span (click)="onItemClick(coin)" class="columnWidth">${{ coin.market_cap }}</span>
+                <span (click)="onItemClick(coin)" class="columnWidth onHoverCursor">${{ coin.market_cap }}</span>
                 <div class="columnWidth supplyColumn" [ngClass]="coin.progress < 100 ? 'onHoverCursor' : null">               
                     <div #toolTipTemplate style="display: none">
                         <div class="tippyContent" *ngIf="coin.progress < 100">

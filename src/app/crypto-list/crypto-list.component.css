@@ -114,7 +114,7 @@ mat-list {
     border-radius: 10px;
 }
 
-.onHoverCursor :hover {
+.onHoverCursor:hover {
     cursor: pointer;
 }
 
@@ -126,4 +126,8 @@ mat-list {
 ::ng-deep .tippy-box {
     width: 25rem;
     padding: 0.5rem;
+}
+
+mat-list-item:hover {
+    background-color: var(--purple-light);
 }
