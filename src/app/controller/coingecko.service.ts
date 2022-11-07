@@ -54,7 +54,7 @@ export class CoinGeckoService {
             }
         }).subscribe((chartData: ChartData) => {
             this.chartData.next(chartData);
-        })
+        });
     }
 
     getChartData(): Observable<ChartData> {

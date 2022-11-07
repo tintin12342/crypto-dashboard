@@ -12,6 +12,7 @@ import Big from 'big.js';
 export class SelectedChartComponent implements OnInit {
   changePeriod: string = '1';
   chartTitle: string = '';
+  coinId: string = '';
 
   chartOption: EChartsOption = {};
 
@@ -21,32 +22,37 @@ export class SelectedChartComponent implements OnInit {
   maxPrice: Big = new Big(-1);
   minPrice: Big = new Big(-1);
 
-  allPrices: number[] = []
+  allPrices: number[] = [];
 
   constructor(private coinGeckoService: CoinGeckoService) { 
     this.coinGeckoService.getChartTitle().subscribe((coinName: string) => {
       this.chartTitle = coinName;
-    })
+    });
+
+    this.coinGeckoService.getCurrentCoinId().subscribe((coinId: string) => {
+      this.coinId = coinId;
+    });
 
     this.coinGeckoService.getChartData().subscribe((chartData: any) => {
       if (chartData.prices === null) return;
-      this.changePeriod = '1';
+      if (chartData.prices.length === 288 || chartData.prices.length === 287) this.changePeriod = '1';
+
       this.firstValue = chartData.prices[0][1];
       this.lastValue = chartData.prices[chartData.prices.length - 1][1];
 
       chartData.prices.forEach((element: number[]) => {
-        let price = new Big(element[1])
-        element[1] >= 10 ? element[1] = Number(price.toFixed(2)) : element[1] = Number(price.toFixed(6))
-        this.allPrices.push(element[1])
+        let price = new Big(element[1]);
+        element[1] >= 10 ? element[1] = Number(price.toFixed(2)) : element[1] = Number(price.toFixed(6));
+        this.allPrices.push(element[1]);
 
-        this.maxPrice = new Big(Math.max.apply(Math, this.allPrices)).round(4, Big.roundUp)
-        this.minPrice = new Big(Math.min.apply(Math, this.allPrices)).round(4, Big.roundDown)
+        this.maxPrice = new Big(Math.max.apply(Math, this.allPrices)).round(4, Big.roundUp);
+        this.minPrice = new Big(Math.min.apply(Math, this.allPrices)).round(4, Big.roundDown);
       });
 
-      this.setChartOptions(chartData)
+      this.setChartOptions(chartData);
 
       this.allPrices = [];
-    })
+    });
   }
 
   ngOnInit(): void {
@@ -54,9 +60,7 @@ export class SelectedChartComponent implements OnInit {
 
   onPeriodChange($event: any) {
     this.changePeriod = $event.source.buttonToggleGroup.value;
-    
-    this.coinGeckoService.getCurrentCoinId().subscribe((coinId: string) => {
-    }).unsubscribe();
+    this.coinGeckoService.setChartData(this.coinId, this.changePeriod);
   }
 
   setChartOptions(chartData: any) {
