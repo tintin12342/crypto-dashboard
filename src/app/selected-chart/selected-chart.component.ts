@@ -3,7 +3,6 @@ import { EChartsOption } from 'echarts';
 import { CoinGeckoService } from '../controller/coingecko.service';
 import * as echarts from 'echarts';
 import Big from 'big.js';
-import { ChartData } from '../model/ChartData';
 
 @Component({
   selector: 'app-selected-chart',
@@ -11,7 +10,9 @@ import { ChartData } from '../model/ChartData';
   styleUrls: ['./selected-chart.component.css']
 })
 export class SelectedChartComponent implements OnInit {
-  chartTitle = '';
+  changePeriod: string = '1';
+  chartTitle: string = '';
+
   chartOption: EChartsOption = {};
 
   firstValue: number = -1;
@@ -29,6 +30,7 @@ export class SelectedChartComponent implements OnInit {
 
     this.coinGeckoService.getChartData().subscribe((chartData: any) => {
       if (chartData.prices === null) return;
+      this.changePeriod = '1';
       this.firstValue = chartData.prices[0][1];
       this.lastValue = chartData.prices[chartData.prices.length - 1][1];
 
@@ -48,6 +50,13 @@ export class SelectedChartComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  onPeriodChange($event: any) {
+    this.changePeriod = $event.source.buttonToggleGroup.value;
+    
+    this.coinGeckoService.getCurrentCoinId().subscribe((coinId: string) => {
+    }).unsubscribe();
   }
 
   setChartOptions(chartData: any) {

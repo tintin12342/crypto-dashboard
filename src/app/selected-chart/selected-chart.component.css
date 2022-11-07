@@ -1,8 +1,18 @@
-#title {
+#headerContainer {
+    display: flex;
     position: absolute;
-    z-index: 2;
+    width: 125vh;
+    justify-content: space-between;
+}
+
+#title {
     margin-left: 1rem;
     margin-top: 0.5rem;
+}
+
+.headerChild {
+    position: relative;
+    z-index: 2;
 }
 
 .chartContainer {

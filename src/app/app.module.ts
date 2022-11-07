@@ -8,6 +8,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 import { NgxTippyModule } from 'ngx-tippy-wrapper';
 
@@ -37,6 +38,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatListModule,
     MatProgressBarModule,
     NgxTippyModule,
+    MatButtonToggleModule,
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts'),
     })

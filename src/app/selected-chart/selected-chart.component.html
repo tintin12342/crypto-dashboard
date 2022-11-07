@@ -1,5 +1,19 @@
-<h2 id="title">{{ chartTitle }}</h2>
+<div id="headerContainer">
+    <h2 id="title" class="headerChild">{{ chartTitle }}</h2>
+    <mat-button-toggle-group 
+    *ngIf="chartTitle !== ''"
+    (change)="onPeriodChange($event)"
+    [value]="changePeriod"
+    class="headerChild">
+        <mat-button-toggle value="1">1D</mat-button-toggle>
+        <mat-button-toggle value="7">1W</mat-button-toggle>
+        <mat-button-toggle value="30">1M</mat-button-toggle>
+        <mat-button-toggle value="90">3M</mat-button-toggle>
+        <mat-button-toggle value="365">1Y</mat-button-toggle>
+        <mat-button-toggle value="max">ALL</mat-button-toggle>
+    </mat-button-toggle-group>
+</div>
 <div class="chartContainer">
-    <h4 id="selectionMsg">Select chart from the list</h4>
+    <h4 id="selectionMsg">Select a coin from the list</h4>
     <div class="chartContainer chart" echarts [options]="chartOption"></div>
 </div>

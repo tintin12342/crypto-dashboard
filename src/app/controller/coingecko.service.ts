@@ -10,7 +10,8 @@ import { ChartData } from "../model/ChartData";
 export class CoinGeckoService {
     private url: string = 'https://api.coingecko.com/api/v3';
     private ohlcData = new BehaviorSubject<OHLC[]>([]);
-    private titleObervable = new BehaviorSubject<string>('');
+    private titleObservable = new BehaviorSubject<string>('');
+    private coinIdObservable = new BehaviorSubject<string>('');
     private chartData = new BehaviorSubject<ChartData>({
         prices: null,
         market_caps: null,
@@ -32,19 +33,24 @@ export class CoinGeckoService {
     }
 
     setChartTitle(title: string): void {
-        this.titleObervable.next(title);
+        this.titleObservable.next(title);
     }
 
     getChartTitle(): Observable<string> {
-        return this.titleObervable.asObservable()
+        return this.titleObservable.asObservable()
     }
 
-    setChartData(id: string, days: string, interval: string): void {
+    getCurrentCoinId(): Observable<string> {
+        return this.coinIdObservable.asObservable()
+    }
+
+    setChartData(id: string, days: string): void {
+        this.coinIdObservable.next(id);
+
         this.http.get<ChartData>(`${this.url}/coins/${id}/market_chart`, {
             params: {
                 'vs_currency': 'usd',
-                'days': days,
-                'interval': interval
+                'days': days
             }
         }).subscribe((chartData: ChartData) => {
             this.chartData.next(chartData);
