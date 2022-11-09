@@ -18,9 +18,6 @@ export class SelectedChartComponent implements OnInit {
 
   firstValue: number = -1;
   lastValue: number = -1;
-  
-  maxPrice: Big = new Big(-1);
-  minPrice: Big = new Big(-1);
 
   allPrices: number[] = [];
 
@@ -35,7 +32,7 @@ export class SelectedChartComponent implements OnInit {
 
     this.coinGeckoService.getChartData().subscribe((chartData: any) => {
       if (chartData.prices === null) return;
-      if (chartData.prices.length === 288 || chartData.prices.length === 287) this.changePeriod = '1';
+      if (chartData.prices.length > 275 && chartData.prices.length <= 290) this.changePeriod = '1';
 
       this.firstValue = chartData.prices[0][1];
       this.lastValue = chartData.prices[chartData.prices.length - 1][1];
@@ -44,9 +41,6 @@ export class SelectedChartComponent implements OnInit {
         let price = new Big(element[1]);
         element[1] >= 10 ? element[1] = Number(price.toFixed(2)) : element[1] = Number(price.toFixed(6));
         this.allPrices.push(element[1]);
-
-        this.maxPrice = new Big(Math.max.apply(Math, this.allPrices)).round(4, Big.roundUp);
-        this.minPrice = new Big(Math.min.apply(Math, this.allPrices)).round(4, Big.roundDown);
       });
 
       this.setChartOptions(chartData);
@@ -76,8 +70,7 @@ export class SelectedChartComponent implements OnInit {
         type: 'time',
       },
       yAxis: {
-        max: Number(this.maxPrice),
-        min: Number(this.minPrice)
+        scale: true,
       },
       grid: {
         top: '15%',
