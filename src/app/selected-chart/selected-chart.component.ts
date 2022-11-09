@@ -13,6 +13,7 @@ export class SelectedChartComponent implements OnInit {
   changePeriod: string = '1';
   chartTitle: string = '';
   coinId: string = '';
+  color: string = 'var(--purple-light)';
 
   chartOption: EChartsOption = {};
 

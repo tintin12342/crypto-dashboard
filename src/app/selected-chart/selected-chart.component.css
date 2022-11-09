@@ -32,3 +32,22 @@
 .chart {
     width: 100%;
 }
+
+mat-button-toggle-group {
+    margin-top: 0.5rem;
+    height: 40px;
+}
+
+::ng-deep .mat-button-toggle-label-content {
+    display: flex !important;
+    align-items: center !important;
+    height: 40px !important;
+}
+
+.mat-button-toggle {
+    height: 40px;
+}
+
+.mat-button-toggle-checked, .mat-button-toggle:hover {
+    background-color: var(--purple-light);
+}

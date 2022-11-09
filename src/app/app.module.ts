@@ -9,6 +9,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatRippleModule } from '@angular/material/core';
 
 import { NgxTippyModule } from 'ngx-tippy-wrapper';
 
@@ -39,6 +40,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatProgressBarModule,
     NgxTippyModule,
     MatButtonToggleModule,
+    MatRippleModule,
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts'),
     })

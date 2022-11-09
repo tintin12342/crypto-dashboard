@@ -4,13 +4,14 @@
     *ngIf="chartTitle !== ''"
     (change)="onPeriodChange($event)"
     [value]="changePeriod"
+    
     class="headerChild">
-        <mat-button-toggle value="1">1D</mat-button-toggle>
-        <mat-button-toggle value="7">1W</mat-button-toggle>
-        <mat-button-toggle value="30">1M</mat-button-toggle>
-        <mat-button-toggle value="90">3M</mat-button-toggle>
-        <mat-button-toggle value="365">1Y</mat-button-toggle>
-        <mat-button-toggle value="max">ALL</mat-button-toggle>
+        <mat-button-toggle value="1" matRipple [matRippleColor]="color">1D</mat-button-toggle>
+        <mat-button-toggle value="7" matRipple [matRippleColor]="color">1W</mat-button-toggle>
+        <mat-button-toggle value="30" matRipple [matRippleColor]="color">1M</mat-button-toggle>
+        <mat-button-toggle value="90" matRipple [matRippleColor]="color">3M</mat-button-toggle>
+        <mat-button-toggle value="365" matRipple [matRippleColor]="color">1Y</mat-button-toggle>
+        <mat-button-toggle value="max" matRipple [matRippleColor]="color">ALL</mat-button-toggle>
     </mat-button-toggle-group>
 </div>
 <div class="chartContainer">
