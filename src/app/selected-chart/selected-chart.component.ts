@@ -23,7 +23,10 @@ export class SelectedChartComponent implements OnInit {
   allPrices: number[] = [];
 
   constructor(private coinGeckoService: CoinGeckoService) { 
+    this.coinGeckoService.setChartData('bitcoin', '1');
+
     this.coinGeckoService.getChartTitle().subscribe((coinName: string) => {
+      if (coinName === '') coinName = 'Bitcoin';
       this.chartTitle = coinName;
     });
 

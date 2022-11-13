@@ -23,12 +23,6 @@
     border-radius: 1rem;
 }
 
-#selectionMsg {
-    position: absolute;
-    font-weight: 500;
-    color: var(--gray);
-}
-
 .chart {
     width: 100%;
 }

@@ -30,7 +30,6 @@ export class SidebarComponent implements OnInit {
       this.btcDominance = new Big(globalData.data.market_cap_percentage.btc).toFixed(2).valueOf();
       this.ethDominance = new Big(globalData.data.market_cap_percentage.eth).toFixed(2).valueOf();
       this.updated = new Date(globalData.data.updated_at * 1000).toUTCString();
-      console.log(globalData.data)
     });
   }
 
