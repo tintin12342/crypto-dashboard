@@ -22,11 +22,6 @@ export class SelectedChartComponent implements OnInit {
 
   firstValue: number = -1;
   lastValue: number = -1;
-
-  leftSelect: number = -1;
-  rightSelect: number = -1;
-  amount: Big = {} as Big;
-  percent: string = '';
   
   allPrices: number[] = [];
 
@@ -35,6 +30,7 @@ export class SelectedChartComponent implements OnInit {
 
     this.coinGeckoService.getChartTitle().subscribe((coinName: string) => {
       if (coinName === '') coinName = 'Bitcoin';
+      this.allPrices = [];
       this.chartTitle = coinName;
     });
 
@@ -67,94 +63,19 @@ export class SelectedChartComponent implements OnInit {
 
   onPeriodChange($event: any) {
     this.allPrices = [];
+    this.coinGeckoService.resetAreaSelectData();
     this.changePeriod = $event.source.buttonToggleGroup.value;
     this.coinGeckoService.setChartData(this.coinId, this.changePeriod);
   }
 
   onSelectReset(params: any) {
     if (params.areas.length === 1) return;
-    
-    this.echarts.setOption<echarts.EChartsOption>({
-      tooltip: {
-        formatter: (params: any) => {
-          if (Number(this.amount) <= 0) {
-            return this.toolTipDesign(true, params, 'var(--red)');
-          } else {
-            return this.toolTipDesign(true, params, 'var(--green)');
-          }
-        },
-      },
-    });
+    this.coinGeckoService.resetAreaSelectData();
   }
 
   onAreaSelect(params: any) {
     if (params.batch[0].areas.length === 0) return;
-    this.leftSelect = this.allPrices[params.batch[0].areas[0].coordRanges[0][0]];
-    this.rightSelect = this.allPrices[params.batch[0].areas[0].coordRanges[0][1]];
-    this.amount = new Big(this.rightSelect).sub(this.leftSelect);
-    this.percent = new Big((1 - Number(new Big(this.leftSelect).div(this.rightSelect))) * 100).toFixed(4);
-
-    this.echarts.setOption<echarts.EChartsOption>({
-      tooltip: {
-        formatter: (params: any) => {
-          if (Number(this.amount) <= 0) {
-            return this.toolTipDesign(false, params, 'var(--red)');
-          } else {
-            return this.toolTipDesign(false, params, 'var(--green)');
-          }
-        },
-      },
-    });
-  }
-
-  toolTipDesign(originalDesign: boolean, params: any, color: string): string {
-    if (originalDesign) {
-    return `
-    ${params[0].name}<br/>
-    <div style="display: flex; justify-content: space-between;">
-      <span>${params[0].marker} Price</span>
-      <strong>${params[0].data}</strong>
-    </div>
-    `} else {
-
-    return `
-    <style>
-      .space {
-        display: flex;
-        justify-content: space-between;
-      }
-      .marker {
-        display:inline-block;
-        margin-right:4px;
-        border-radius:10px;
-        width:10px;
-        height:10px;
-        background-color: ${color};
-      }
-    </style>
-    ${params[0].name}<br/>
-    <div class="space">
-      <span><span class="marker"></span> Price</span>
-      <strong>${params[0].data}</strong>
-    </div>
-    <hr style="border-color: ${color}">
-    <div class="space">
-      <span>Left</span>
-      <span>Right</span>
-    </div>
-    <div class="space">
-      <strong>${this.leftSelect}</strong>
-      <strong>${this.rightSelect}</strong>
-    </div>
-    <div class="space">
-      <span>Amount</span>
-      <span>Percent</span>
-    </div>
-    <div class="space">
-      <strong>${this.amount}</strong>
-      <strong>${this.percent}</strong>
-    </div>
-    `}
+    this.coinGeckoService.setAreaSelectData(params, this.allPrices);
   }
 
   setChartOptions(chartData: any) {
@@ -181,6 +102,10 @@ export class SelectedChartComponent implements OnInit {
       brush: {
         toolbox: ['lineX'],
         yAxisIndex: 0,
+        brushStyle: {
+          color: '#574CCB12',
+          borderColor: '#574CCB12'
+        }
       },
       grid: {
         top: '15%',

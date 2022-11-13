@@ -30,6 +30,17 @@
     font-weight: 500;
 }
 
+.selectContainer {
+    width: 80%;
+    position: absolute;
+    top: 15vh;
+    margin-left: 1rem;
+}
+
+.selectValue {
+    font-size: 0.8rem;
+}
+
 #disclamer {
     position: absolute;
     bottom: 3rem;

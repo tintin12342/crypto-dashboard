@@ -13,6 +13,7 @@ export class CoinGeckoService {
     private ohlcData = new BehaviorSubject<OHLC[]>([]);
     private titleObservable = new BehaviorSubject<string>('');
     private coinIdObservable = new BehaviorSubject<string>('');
+    private areaSelectObservable = new BehaviorSubject<any>(null);
     private chartData = new BehaviorSubject<ChartData>({
         prices: null,
         market_caps: null,
@@ -47,6 +48,18 @@ export class CoinGeckoService {
 
     getCurrentCoinId(): Observable<string> {
         return this.coinIdObservable.asObservable()
+    }
+
+    getAreaSelectData(): Observable<any> {
+        return this.areaSelectObservable.asObservable();
+    }
+
+    setAreaSelectData(params: any, coinPrices: number[]): void {
+        this.areaSelectObservable.next({params: params, coinPrices: coinPrices});
+    }
+
+    resetAreaSelectData(): void { 
+        this.areaSelectObservable.next(null);
     }
 
     setChartData(id: string, days: string): void {

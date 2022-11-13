@@ -1,5 +1,12 @@
 <div id="parentContainer">
     <span id="logo">LOGO</span>
+    <div *ngIf="areaSelectData !== null" class="itemContainer selectContainer">
+        <span class="label">Selected:</span>
+        <span class="value selectValue">${{ leftSelect }} - ${{ rightSelect }}</span>
+        <span class="label" style="margin-top: 0.5rem;">Amount:</span>
+        <span class="value selectValue" 
+        [style.color]="amount >= 0 ? 'var(--green)' : 'var(--red)'">{{ amount }} ({{ percent }}%)</span>
+    </div>
     <div class="itemContainer">
         <span class="label">Cryptos:</span>
         <span class="value">{{ cryptos }}</span>
