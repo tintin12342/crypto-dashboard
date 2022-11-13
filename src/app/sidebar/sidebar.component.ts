@@ -19,8 +19,6 @@ export class SidebarComponent implements OnInit {
   ethDominance: string = '';
   updated: string = '';
 
-  sauce = -1;
-
   constructor(private coinGeckoService: CoinGeckoService) {
     this.coinGeckoService.getGlobalData().subscribe((globalData: GlobalData) => {
       this.cryptos = globalData.data.active_cryptocurrencies;

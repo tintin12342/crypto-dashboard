@@ -14,5 +14,8 @@
     </mat-button-toggle-group>
 </div>
 <div class="chartContainer">
-    <div class="chartContainer chart" echarts [options]="chartOption"></div>
+    <div echarts class="chartContainer chart" [options]="chartOption" 
+    (chartInit)="onChartInit($event)"
+    (chartBrushSelected)="onAreaSelect($event)"
+    (chartBrushEnd)="onSelectReset($event)"></div>
 </div>
