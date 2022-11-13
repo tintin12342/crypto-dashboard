@@ -1,8 +1,30 @@
 <div id="parentContainer">
-    <span>LOGO</span>
-    <a class="iconPadding">Dashboard</a>
-    <a class="iconPadding">Exchange</a>
-    <a class="iconPadding">Analytics</a>
-    <a class="iconPadding">Settings</a>
-    <a>Sign out</a>
+    <span id="logo">LOGO</span>
+    <div class="itemContainer">
+        <span class="label">Cryptos:</span>
+        <span class="value">{{ cryptos }}</span>
+    </div>
+    <div class="itemContainer">
+        <span class="label">Exchanges:</span>
+        <span class="value">{{ exchanges }}</span>
+    </div>
+    <div class="itemContainer">
+        <span class="label">Market Cap: <span [style.color]="change24h >= 0 ? 'var(--green)' : 'var(--red)'">{{ change24h }}%</span>
+        </span>
+        <span class="value">${{ marketCap }}</span>
+    </div>
+    <div class="itemContainer">
+        <span class="label">24h Vol:</span>
+        <span class="value">${{ volume24h }}</span>
+    </div>
+    <div class="itemContainer">
+        <span class="label">Dominance:</span>
+        <span class="value">BTC {{ btcDominance }}%</span>
+        <span class="value">ETH {{ ethDominance }}%</span>
+    </div>
+    <span id="disclamer">
+        Data from <a href="https://www.coingecko.com/en/api/documentation" target="_blank">CoinGecko</a>
+        <br>
+        <span>{{ updated }}</span>
+    </span>
 </div>

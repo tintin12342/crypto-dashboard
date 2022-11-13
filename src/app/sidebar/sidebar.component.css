@@ -4,18 +4,41 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color: var(--black);
 }
 
-.iconPadding {
-    padding: 1rem 0;
-}
-
-#parentContainer :first-child {
+#logo {
     position: absolute;
     top: 3rem;
 }
 
-#parentContainer :last-child {
+.itemContainer {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+}
+
+.label {
+    color: var(--gray);
+    font-size: 0.8rem;
+}
+
+.value {
+    color: var(--black);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+#disclamer {
     position: absolute;
     bottom: 3rem;
+    text-align: center;
+    color: var(--gray);
+    font-size: 0.7rem;
+}
+
+#disclamer > a {
+    text-decoration: none;
+    color: var(--purple);
 }

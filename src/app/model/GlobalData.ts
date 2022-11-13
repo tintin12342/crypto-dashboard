@@ -4,6 +4,7 @@ export interface GlobalData {
         upcoming_icos: number,
         ongoing_icos: number,
         ended_icos: number,
+        markets: number,
         total_market_cap: {
             btc: number
             eth: number
