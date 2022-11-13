@@ -22,6 +22,7 @@
     "@angular/router": "^14.0.0",
     "big.js": "^6.2.1",
     "echarts": "^5.4.0",
+    "moment": "^2.29.4",
     "ngx-echarts": "^14.0.0",
     "ngx-tippy-wrapper": "^6.0.0",
     "rxjs": "~7.5.0",

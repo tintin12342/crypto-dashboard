@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Big from 'big.js';
+import * as moment from 'moment';
 import { CoinGeckoService } from '../controller/coingecko.service';
 import { GlobalData } from '../model/GlobalData';
 
@@ -29,7 +30,7 @@ export class SidebarComponent implements OnInit {
       this.change24h = Number(new Big(globalData.data.market_cap_change_percentage_24h_usd).toFixed(2).valueOf());
       this.btcDominance = new Big(globalData.data.market_cap_percentage.btc).toFixed(2).valueOf();
       this.ethDominance = new Big(globalData.data.market_cap_percentage.eth).toFixed(2).valueOf();
-      this.updated = new Date(globalData.data.updated_at * 1000).toUTCString();
+      this.updated = moment(new Date(globalData.data.updated_at * 1000)).format('D MMM YYYY, h:mm:ss A');
     });
   }
 
