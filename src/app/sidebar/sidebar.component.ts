@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CoinGeckoService } from '../controller/coingecko.service';
+import { GlobalData } from '../model/GlobalData';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private coinGeckoService: CoinGeckoService) {
+    this.coinGeckoService.getGlobalData().subscribe((globalData: GlobalData) => {
+      
+    });
+  }
 
   ngOnInit(): void {
   }
