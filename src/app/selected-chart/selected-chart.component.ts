@@ -99,6 +99,30 @@ export class SelectedChartComponent implements OnInit {
       yAxis: {
         scale: true,
       },
+      toolbox: {
+        top: '3.5%',
+        right: '26%',
+        itemSize: 20,
+        backgroundColor: '#574CCB12',
+        textStyle: {
+          color: '#574CCB',
+          textBorderColor: '#574CCB',
+          borderColor: '#574CCB',
+          backgroundColor: 'red',
+          shadowColor: 'red'
+        },
+        iconStyle: {
+          borderColor: '#222222',
+          borderWidth: 1,
+        },
+        feature: {
+          brush: {
+            title: {
+              lineX: 'Select area'
+            },
+          }
+        }
+      },
       brush: {
         toolbox: ['lineX'],
         yAxisIndex: 0,

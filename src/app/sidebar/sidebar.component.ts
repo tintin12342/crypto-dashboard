@@ -43,7 +43,7 @@ export class SidebarComponent implements OnInit {
       this.leftSelect = data.coinPrices[data.params.batch[0].areas[0].coordRanges[0][0]];
       this.rightSelect = data.coinPrices[data.params.batch[0].areas[0].coordRanges[0][1]];
       this.amount = Number(new Big(this.rightSelect).sub(this.leftSelect).valueOf());
-      this.percent = new Big((1 - Number(new Big(this.leftSelect).div(this.rightSelect))) * 100).toFixed(4);
+      this.percent = String((Number((new Big(this.leftSelect).sub(this.rightSelect)).div(this.leftSelect)) * 100).toFixed(4));
     });
   }
 
