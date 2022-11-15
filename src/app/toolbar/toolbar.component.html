@@ -1,0 +1,28 @@
+<mat-toolbar>
+    <div class="itemContainer">
+        <span class="label">Cryptos:</span>
+        <span class="value">{{ cryptos }}</span>
+    </div>
+    <div class="itemContainer">
+        <span class="label">Exchanges:</span>
+        <span class="value">{{ exchanges }}</span>
+    </div>
+    <div class="itemContainer">
+        <span class="label">Market Cap: 
+            <span [style.color]="change24h >= 0 ? 'var(--green)' : 'var(--red)'">{{ change24h }}%</span>
+        </span>
+        <span class="value">${{ marketCap }}</span>
+    </div>
+    <div class="itemContainer">
+        <span class="label">24h Vol:</span>
+        <span class="value">${{ volume24h }}</span>
+    </div>
+    <div class="itemContainer">
+        <span class="label">Dominance:</span>
+        <div class="value">
+            <span> {{ btcDominance }}% <span class="dominanceName btc">BTC</span></span> 
+            <span> {{ ethDominance }}% <span class="dominanceName eth">ETH</span></span> 
+            <span> {{ usdtDominance }}% <span class="dominanceName usdt">USDT</span></span>
+        </div>
+    </div>
+</mat-toolbar>

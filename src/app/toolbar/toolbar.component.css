@@ -1,0 +1,58 @@
+mat-toolbar {
+    height: 7vh;
+    width: 70%;
+    margin: 1.2rem 0;
+    padding: 0 3rem;
+    background-color: transparent;
+}
+
+.itemContainer {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+}
+
+.label {
+    color: var(--gray);
+    font-size: 0.8rem;
+}
+
+.value {
+    color: var(--black);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.selectContainer {
+    width: 80%;
+    position: absolute;
+    top: 15vh;
+    margin-left: 1rem;
+}
+
+.selectValue {
+    font-size: 0.8rem;
+}
+
+.dominanceName {
+    padding: 0.4rem;
+    margin-right: 1rem;
+    border-radius: 1rem;
+    font-size: 0.8rem;
+}
+
+.btc {
+    color: #f7931a;
+    background-color: #f7931a12;
+}
+
+.eth {
+    color: #5c628a;
+    background-color: #5c628a12;
+}
+
+.usdt {
+    color: #009393;
+    background-color: #00939312;
+}

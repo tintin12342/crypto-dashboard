@@ -1,33 +1,16 @@
 <div id="parentContainer">
     <span id="logo">LOGO</span>
-    <div *ngIf="areaSelectData !== null" class="itemContainer selectContainer">
-        <span class="label">Selected:</span>
-        <span class="value selectValue">${{ leftSelect }} - ${{ rightSelect }}</span>
-        <span class="label" style="margin-top: 0.5rem;">Amount:</span>
-        <span class="value selectValue" 
-        [style.color]="amount >= 0 ? 'var(--green)' : 'var(--red)'">{{ amount }} ({{ percent }}%)</span>
-    </div>
     <div class="itemContainer">
         <span class="label">Cryptos:</span>
-        <span class="value">{{ cryptos }}</span>
+        <span class="value">cryptos</span>
     </div>
     <div class="itemContainer">
         <span class="label">Exchanges:</span>
-        <span class="value">{{ exchanges }}</span>
-    </div>
-    <div class="itemContainer">
-        <span class="label">Market Cap: <span [style.color]="change24h >= 0 ? 'var(--green)' : 'var(--red)'">{{ change24h }}%</span>
-        </span>
-        <span class="value">${{ marketCap }}</span>
+        <span class="value">exchanges</span>
     </div>
     <div class="itemContainer">
         <span class="label">24h Vol:</span>
-        <span class="value">${{ volume24h }}</span>
-    </div>
-    <div class="itemContainer">
-        <span class="label">Dominance:</span>
-        <span class="value">BTC {{ btcDominance }}%</span>
-        <span class="value">ETH {{ ethDominance }}%</span>
+        <span class="value">volume24h</span>
     </div>
     <span id="disclamer">
         Data from <a href="https://www.coingecko.com/en/api/documentation" target="_blank">CoinGecko</a>

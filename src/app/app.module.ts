@@ -21,6 +21,7 @@ import { CryptoConverterComponent } from './crypto-converter/crypto-converter.co
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { CoinGeckoService } from './controller/coingecko.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
     CryptoListComponent,
     SelectedChartComponent,
     CryptoConverterComponent,
-    SidebarComponent
+    SidebarComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,

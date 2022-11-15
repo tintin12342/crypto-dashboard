@@ -6,18 +6,19 @@ export interface GlobalData {
         ended_icos: number,
         markets: number,
         total_market_cap: {
-            btc: number
-            eth: number
+            btc: number,
+            eth: number,
             usd: number
         },
         total_volume: {
-            btc: number
-            eth: number
+            btc: number,
+            eth: number,
             usd: number
         },
         market_cap_percentage: {
-            btc: number
-            eth: number
+            btc: number,
+            eth: number,
+            usdt: number
         },
         market_cap_change_percentage_24h_usd: number,
         updated_at: number
