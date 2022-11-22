@@ -5,6 +5,7 @@ import { OHLC } from "../model/OHLC";
 import { Observable, BehaviorSubject } from "rxjs";
 import { ChartData } from "../model/ChartData";
 import { GlobalData } from "../model/GlobalData";
+import { CoinData } from "../model/CoinData";
 
 
 @Injectable()
@@ -24,6 +25,10 @@ export class CoinGeckoService {
 
     getGlobalData(): Observable<GlobalData> {
         return this.http.get<GlobalData>(`${this.url}/global`)
+    }
+
+    getCoinData(id: string): Observable<CoinData> {
+        return this.http.get<CoinData>(`${this.url}/coins/${id}`)
     }
     
     getCoinListData(): Observable<CoinListData[]> {

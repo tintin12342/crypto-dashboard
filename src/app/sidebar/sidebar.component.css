@@ -8,6 +8,9 @@
 }
 
 #logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     position: absolute;
     top: 3rem;
 }
@@ -26,15 +29,14 @@
 
 .value {
     color: var(--black);
-    font-size: 1rem;
+    font-size: 0.8rem;
     font-weight: 500;
 }
 
 .selectContainer {
     width: 80%;
-    position: absolute;
-    top: 15vh;
-    margin-left: 1rem;
+    text-align: center;
+    border-radius: 1rem;
 }
 
 .selectValue {

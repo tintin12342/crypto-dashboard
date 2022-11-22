@@ -1,16 +1,41 @@
 <div id="parentContainer">
-    <span id="logo">LOGO</span>
-    <div class="itemContainer">
-        <span class="label">Cryptos:</span>
-        <span class="value">cryptos</span>
+    <div id="logo">
+        <img src="{{ imageUrl }}" width="50" height="50">
+        <span class="value">{{ name }}</span>
+        <span class="label">Rank: {{ rank }}</span>
+        <span class="label">Origin: {{ genesisDate }}</span>
+    </div>
+    <div *ngIf="areaSelectData !== null" class="itemContainer selectContainer"
+    [style.background-color]="amount >= 0 ? 'var(--green-light)' : 'var(--red-light)'">
+        <span class="label">Selected range:</span>
+        <span class="value selectValue">${{ leftSelect }} - ${{ rightSelect }}</span>
+        <span class="label" style="margin-top: 0.5rem;">Amount:</span>
+        <span class="value selectValue" 
+        [style.color]="amount >= 0 ? 'var(--green)' : 'var(--red)'">{{ amount }} ({{ percent }}%)</span>
     </div>
     <div class="itemContainer">
-        <span class="label">Exchanges:</span>
-        <span class="value">exchanges</span>
+        <span class="label">Change 2W, 1M, 1Y:</span>
+        <span class="value" [style.color]="percentage2w >= 0 ? 'var(--green)' : 'var(--red)'">{{ percentage2w }}%</span>
+        <span class="value" [style.color]="percentage1m >= 0 ? 'var(--green)' : 'var(--red)'">{{ percentage1m }}%</span>
+        <span class="value" [style.color]="percentage1y >= 0 ? 'var(--green)' : 'var(--red)'">{{ percentage1y }}%</span>
     </div>
     <div class="itemContainer">
-        <span class="label">24h Vol:</span>
-        <span class="value">volume24h</span>
+        <span class="label">Total Vol:</span>
+        <span class="value">${{ totalVol }}</span>
+    </div>
+    <div class="itemContainer">
+        <span class="label">Market Cap Change:</span>
+        <span class="value">${{ marketCapChange }}</span>
+        <span class="value" 
+        [style.color]="marketCapChangePercentage >= 0 ? 'var(--green)' : 'var(--red)'">{{ marketCapChangePercentage }}%</span>
+    </div>
+    <div class="itemContainer">
+        <span class="label">Ath: <span>{{ athDate }}</span></span>
+        <span class="value">${{ ath }}</span>
+    </div>
+    <div class="itemContainer">
+        <span class="label">Atl: {{ atlDate }}</span>
+        <span class="value">${{ atl }}</span>
     </div>
     <span id="disclamer">
         Data from <a href="https://www.coingecko.com/en/api/documentation" target="_blank">CoinGecko</a>
